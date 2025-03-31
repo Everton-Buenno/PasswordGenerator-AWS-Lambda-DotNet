@@ -1,49 +1,34 @@
-# AWS Lambda Empty Function Project
+# Password Generator Lambda
 
-This starter project consists of:
-* Function.cs - class file containing a class with a single function handler method
-* aws-lambda-tools-defaults.json - default argument settings for use with Visual Studio and command line deployment tools for AWS
+Uma função AWS Lambda escrita em .NET Core que gera senhas seguras.
 
-You may also have a test project depending on the options selected.
+## Funcionalidades
 
-The generated function handler is a simple method accepting a string argument that returns the uppercase equivalent of the input string. Replace the body of this method, and parameters, to suit your needs. 
+- Geração de senhas com comprimento personalizável
+- Opções para incluir letras maiúsculas/minúsculas, números e símbolos
+- Cálculo de força da senha (1-5)
+- API REST via AWS Lambda Function URL
 
-## Here are some steps to follow from Visual Studio:
+## Tecnologias
 
-To deploy your function to AWS Lambda, right click the project in Solution Explorer and select *Publish to AWS Lambda*.
+- .NET 8
+- AWS Lambda
+- AWS Lambda Function URL
 
-To view your deployed function open its Function View window by double-clicking the function name shown beneath the AWS Lambda node in the AWS Explorer tree.
+## Como usar
 
-To perform testing against your deployed function use the Test Invoke tab in the opened Function View window.
+1. Clone o repositório
+2. Configure suas credenciais AWS
+3. Execute `dotnet lambda deploy-function PasswordGenerator`
+4. Configure a Function URL no console AWS
 
-To configure event sources for your deployed function, for example to have your function invoked when an object is created in an Amazon S3 bucket, use the Event Sources tab in the opened Function View window.
+## Exemplo de requisição
 
-To update the runtime configuration of your deployed function use the Configuration tab in the opened Function View window.
-
-To view execution logs of invocations of your function use the Logs tab in the opened Function View window.
-
-## Here are some steps to follow to get started from the command line:
-
-Once you have edited your template and code you can deploy your application using the [Amazon.Lambda.Tools Global Tool](https://github.com/aws/aws-extensions-for-dotnet-cli#aws-lambda-amazonlambdatools) from the command line.
-
-Install Amazon.Lambda.Tools Global Tools if not already installed.
-```
-    dotnet tool install -g Amazon.Lambda.Tools
-```
-
-If already installed check if new version is available.
-```
-    dotnet tool update -g Amazon.Lambda.Tools
-```
-
-Execute unit tests
-```
-    cd "PasswordGeneratorFunction/test/PasswordGeneratorFunction.Tests"
-    dotnet test
-```
-
-Deploy function to AWS Lambda
-```
-    cd "PasswordGeneratorFunction/src/PasswordGeneratorFunction"
-    dotnet lambda deploy-function
-```
+```json
+{
+  "length": 16,
+  "includeUppercase": true,
+  "includeLowercase": true,
+  "includeNumbers": true,
+  "includeSpecialChars": true
+}
